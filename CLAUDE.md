@@ -14,8 +14,10 @@ Migrated from GoDaddy Websites+Marketing in August 2026.
 - Booking links are Google Calendar appointment schedules (calendar.app.google/...) — owned by Patrick's Google Workspace
   - Discovery Call: https://calendar.app.google/xNYgmVwws6tfUpzz5
   - Strategy Session: https://calendar.app.google/pupygBZuvnSmjG4v7
-- Contact/subscribe are mailto links to patrick@jajehgroup.com; TODO comments in index.html mark
-  where to embed Google Forms when created
+- Contact form: embedded Google Form (Contact Jajeh Financial,
+  /d/e/1FAIpQLSebG08vBdQqcck3ehs02-Aio5-7Qkt-4LBxPPlFLnPcewbKTA) — email notifications on,
+  responses to Patrick's Google account. Newsletter button links to the Jajeh Financial
+  Newsletter form (/d/e/1FAIpQLSdoxXHpUQNjtJnkFAvnxzg--265_VbVq8pgbEas1SnQ87HH2A)
 - Reports → https://www.myaltavista.com/ ; Tax → unisoncpa.com ; Sharefile → jajeh.sharefile.com
 
 ## Rules
