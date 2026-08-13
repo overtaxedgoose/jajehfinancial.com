@@ -14,10 +14,14 @@ Migrated from GoDaddy Websites+Marketing in August 2026.
 - Booking links are Google Calendar appointment schedules (calendar.app.google/...) — owned by Patrick's Google Workspace
   - Discovery Call: https://calendar.app.google/xNYgmVwws6tfUpzz5
   - Strategy Session: https://calendar.app.google/pupygBZuvnSmjG4v7
-- Contact form: embedded Google Form (Contact Jajeh Financial,
-  /d/e/1FAIpQLSebG08vBdQqcck3ehs02-Aio5-7Qkt-4LBxPPlFLnPcewbKTA) — email notifications on,
-  responses to Patrick's Google account. Newsletter button links to the Jajeh Financial
-  Newsletter form (/d/e/1FAIpQLSdoxXHpUQNjtJnkFAvnxzg--265_VbVq8pgbEas1SnQ87HH2A)
+- Contact + newsletter are NATIVE forms styled to the site that POST silently (fetch no-cors)
+  to private Google Forms — do not replace with iframes, they look bulky:
+  - Contact Jajeh Financial /d/e/1FAIpQLSebG08vBdQqcck3ehs02-Aio5-7Qkt-4LBxPPlFLnPcewbKTA
+    fields: emailAddress, entry.1375934470 (Name), entry.126211689 (message)
+  - Jajeh Financial Newsletter /d/e/1FAIpQLSdoxXHpUQNjtJnkFAvnxzg--265_VbVq8pgbEas1SnQ87HH2A
+    fields: emailAddress (localStorage jf-newsletter-done prevents dupes)
+  Both owned by patrick@jajehgroup.com, email notifications on. If form questions ever change,
+  re-extract entry IDs from the viewform data-params attributes.
 - Reports → https://www.myaltavista.com/ ; Tax → unisoncpa.com ; Sharefile → jajeh.sharefile.com
 
 ## Rules

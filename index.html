@@ -133,17 +133,55 @@
       <div class="cols">
         <div class="panel">
           <h3>Get in touch</h3>
-          <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSebG08vBdQqcck3ehs02-Aio5-7Qkt-4LBxPPlFLnPcewbKTA/viewform?embedded=true" height="820" title="Contact form">Loading&hellip;</iframe>
+          <form class="nform" id="contact-form" novalidate="">
+            <input type="text" name="name" placeholder="Name" required aria-label="Name">
+            <input type="email" name="email" placeholder="Email" required aria-label="Email">
+            <textarea name="message" placeholder="How can we help?" required aria-label="How can we help?"></textarea>
+            <button class="btn" type="submit">Send</button>
+          </form>
+          <p class="form-ok" id="contact-ok" hidden>Thank you &mdash; we&rsquo;ll get back to you promptly.</p>
           <p style="margin-top:1rem">Prefer email? Reach us (attachments welcome) at <a href="mailto:patrick@jajehgroup.com?subject=Inquiry%20from%20jajehfinancial.com">patrick@jajehgroup.com</a>.</p>
         </div>
         <div class="panel">
           <h3>Subscribe</h3>
           <p>Sign up to hear from us.</p>
-          <a class="btn ghost" href="https://docs.google.com/forms/d/e/1FAIpQLSdoxXHpUQNjtJnkFAvnxzg--265_VbVq8pgbEas1SnQ87HH2A/viewform">Sign Up</a>
+          <form class="nform inline" id="news-form" novalidate="">
+            <input type="email" name="email" placeholder="Email address" required aria-label="Email address">
+            <button class="btn ghost" type="submit">Sign Up</button>
+          </form>
+          <p class="form-ok" id="news-ok" hidden>You&rsquo;re on the list.</p>
         </div>
       </div>
     </div>
   </section>
+
+  <script>
+    // Both forms post silently to private Google Forms (see CLAUDE.md).
+    function wire(formId, okId, action, build, storeKey) {
+      const form = document.getElementById(formId), ok = document.getElementById(okId);
+      if (storeKey && localStorage.getItem(storeKey)) { form.hidden = true; ok.hidden = false; return; }
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        if (!form.reportValidity()) return;
+        const body = build(form);
+        fetch(action, { method: 'POST', mode: 'no-cors', body }).catch(() => {});
+        if (storeKey) localStorage.setItem(storeKey, '1');
+        form.hidden = true; ok.hidden = false;
+      });
+    }
+    wire('contact-form', 'contact-ok',
+      'https://docs.google.com/forms/d/e/1FAIpQLSebG08vBdQqcck3ehs02-Aio5-7Qkt-4LBxPPlFLnPcewbKTA/formResponse',
+      (f) => { const b = new FormData();
+        b.append('emailAddress', f.email.value.trim());
+        b.append('entry.1375934470', f.name.value.trim());
+        b.append('entry.126211689', f.message.value.trim());
+        return b; }, null);
+    wire('news-form', 'news-ok',
+      'https://docs.google.com/forms/d/e/1FAIpQLSdoxXHpUQNjtJnkFAvnxzg--265_VbVq8pgbEas1SnQ87HH2A/formResponse',
+      (f) => { const b = new FormData();
+        b.append('emailAddress', f.email.value.trim());
+        return b; }, 'jf-newsletter-done');
+  </script>
 
   <footer class="site-footer">
     <nav class="foot-nav">

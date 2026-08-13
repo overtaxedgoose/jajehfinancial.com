@@ -81,7 +81,27 @@ section { padding: 4rem 0; }
 @media (max-width: 760px) { .contact .cols { grid-template-columns: 1fr; } }
 .contact .panel { background: var(--bg); border: 1px solid var(--line); border-radius: 10px; padding: 2rem 1.8rem; }
 .contact .panel h3 { text-transform: uppercase; letter-spacing: .05em; }
-.contact iframe { display: block; width: 100%; border: 0; border-radius: 8px; background: #fff; }
+/* Native forms (post silently to Google Forms) */
+.nform { display: grid; gap: 1rem; margin-top: 1.2rem; }
+.nform input, .nform textarea {
+  width: 100%;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: .85rem 1rem;
+  font-family: var(--sans);
+  font-size: 1rem;
+  color: var(--ink);
+  outline: none;
+  transition: border-color .2s ease;
+}
+.nform input:focus, .nform textarea:focus { border-color: var(--teal); }
+.nform textarea { min-height: 130px; resize: vertical; }
+.nform .btn { border: 0; cursor: pointer; justify-self: start; }
+.nform.inline { grid-template-columns: 1fr auto; align-items: start; }
+@media (max-width: 480px) { .nform.inline { grid-template-columns: 1fr; } }
+.form-ok { color: var(--teal-deep); font-weight: 700; margin-top: 1.2rem; }
+.form-ok[hidden] { display: none; }
 
 /* Simple page (links, privacy) */
 .page-title { text-align: center; padding: 3.5rem 1.25rem 0; }
