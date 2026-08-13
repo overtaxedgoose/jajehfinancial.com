@@ -25,5 +25,7 @@ Migrated from GoDaddy Websites+Marketing in August 2026.
 - Reports → https://www.myaltavista.com/ ; Tax → unisoncpa.com ; Sharefile → jajeh.sharefile.com
 
 ## Rules
+- NEVER publish an email address anywhere on this site (including the privacy policy) —
+  Patrick's addresses must stay protected. All contact goes through the native forms.
 - URL paths /links and /privacy-policy must keep working (Pages serves links.html at /links).
 - DNS at GoDaddy; email on Google Workspace — never change NS/MX/TXT records.
