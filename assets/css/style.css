@@ -102,6 +102,7 @@ section { padding: 4rem 0; }
 @media (max-width: 480px) { .nform.inline { grid-template-columns: 1fr; } }
 .form-ok { color: var(--teal-deep); font-weight: 700; margin-top: 1.2rem; }
 .form-ok[hidden] { display: none; }
+.nform[hidden] { display: none; }
 
 /* Simple page (links, privacy) */
 .page-title { text-align: center; padding: 3.5rem 1.25rem 0; }
