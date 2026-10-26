@@ -5,8 +5,18 @@ Migrated from GoDaddy Websites+Marketing in August 2026.
 
 ## Structure
 - Plain HTML/CSS, no build step. Pushing to `main` deploys via GitHub Pages.
-- `index.html` — one-page site: hero, services, appointments, industries, about, contact
+- `index.html` — one-page site: hero, approach (Build / Capture / Secure), services, appointments,
+  industries carousel, about, contact
+- `industries/index.html` (/industries/) hub + `industries/<slug>.html` (/industries/<slug>) landing pages:
+  creative-agencies, nonprofits, injury-attorneys, real-estate. Each follows the same template:
+  hero > intro > "What the Books Have to Handle" (6 cards) > "The Numbers That Drive Profitability"
+  (6 metrics with rule-of-thumb targets) > "From Profit to Wealth" (Build / Capture / Secure pillars)
+  > CTA band > "Other industries" strip. Adding an industry = new page here, a slide in the homepage
+  carousel (`<article class="ind-slide">` inside `#ind-track`; dots are generated), a card on the hub,
+  a link in every other page's "Other industries" strip, and a line in sitemap.xml.
 - `links.html` (/links), `privacy-policy.html` (/privacy-policy)
+- `private/` and `.claude/launch.json` are gitignored: local-only working files (the methodology
+  canvas source, the local preview config). Nothing in `private/` is ever published.
 - `downloads/` — Alta Vista EULA + Privacy Policy PDFs (rescued from GoDaddy CDN; linked from /privacy-policy)
 - `assets/css/style.css` — fonts: Libre Franklin (headings) + Lato (body); palette: charcoal + mint teal from the sail logo
 
@@ -32,6 +42,14 @@ Migrated from GoDaddy Websites+Marketing in August 2026.
   proxy (Cloudflare Worker / Vercel function) that verifies a Cloudflare Turnstile token server-side
   and forwards to Google, so the form id never appears in page source.
 - Reports → https://www.myaltavista.com/ ; Tax → unisoncpa.com ; Sharefile → jajeh.sharefile.com
+
+## Positioning (since Oct 2026)
+Jajeh Financial is positioned first as a fractional CFO service for owners who are scaling a business
+and building, capturing and securing wealth from it. Bookkeeping/payroll is "the foundation", tax is
+"planning all year, filing through Unison CPA". The method is three phases, "Build. Capture. Secure."
+(homepage #approach band, and the "From Profit to Wealth" section on every industry page). The full
+methodology graphic (phases > levels > operating rhythm) is a private Claude Design artifact that
+Patrick walks prospects through; it is deliberately NOT on the site.
 
 ## Rules
 - NEVER publish an email address anywhere on this site (including the privacy policy) —
