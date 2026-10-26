@@ -9,7 +9,11 @@ Migrated from GoDaddy Websites+Marketing in August 2026.
   (Build / Capture / Secure), services (`section.dark`), industries carousel, appointments (dark),
   about, contact. Keep that alternation when adding or moving sections.
 - `industries/index.html` (/industries/) hub + `industries/<slug>.html` (/industries/<slug>) landing pages:
-  creative-agencies, nonprofits, injury-attorneys, real-estate, residential-construction. Each follows
+  creative-agencies, nonprofits, injury-attorneys, real-estate, residential-construction, multi-entity
+  (holding companies, PE platforms, roll-ups), highly-regulated (state-licensed cultivation, processing
+  and retail: 280E, seed-to-sale, cash controls; deliberately never says "cannabis" or "weed" on the page
+  so other prospects are not put off; the meta description alone says "state-legal cannabis" for search).
+  Each follows
   the same template:
   hero > intro > "What the Books Have to Handle" (6 cards) > "The Numbers That Drive Profitability"
   (6 metrics with rule-of-thumb targets) > "From Profit to Wealth" (Build / Capture / Secure pillars)
@@ -30,8 +34,10 @@ Migrated from GoDaddy Websites+Marketing in August 2026.
 - `private/` and `.claude/launch.json` are gitignored: local-only working files (the methodology
   canvas source, the local preview config). Nothing in `private/` is ever published.
 - `downloads/` — Alta Vista EULA + Privacy Policy PDFs (rescued from GoDaddy CDN; linked from /privacy-policy)
-- Hero motion: `.hero::before/::after` drift two teal radial pools and a faint grid behind every hero
-  (pure CSS keyframes, off under prefers-reduced-motion). Speed = the two animation durations.
+- Hero motion: `.hero::before/::after` drift two teal radial pools (pure CSS), and `assets/js/hero-wind.js`
+  injects an SVG of the brand mark in motion (three billowing sails, bobbing hull, wind gusts, waves)
+  behind every `.hero`; all animation is CSS in style.css ("Sails and wind"), and the script does nothing
+  under prefers-reduced-motion. Every page with a `.hero` loads the script with `defer`.
 - `assets/css/style.css` — type is Lato throughout since Oct 2026 (headings Lato 700, body Lato 400;
   `--head` and `--sans` both resolve to Lato with Helvetica Neue fallback); palette: charcoal + mint teal
   from the sail logo. Brand guide: the logo itself is Flama Condensed (Bold or Light), complementary fonts

@@ -42,9 +42,9 @@ a { color: var(--teal-deep); }
 @media (max-width: 720px) { .site-header .wrap { flex-direction: column; gap: .5rem; } }
 
 /* Hero */
-/* Hero background motion: two drifting pools of teal light and a faint scaffolding grid behind the
-   content, pure CSS, no JS, and switched off for prefers-reduced-motion. Tune speed in the two
-   animation durations; tune intensity in the rgba alphas. */
+/* Hero background motion, layer 1: two drifting pools of teal light (pure CSS). Layer 2, the sails and
+   wind, is the SVG that assets/js/hero-wind.js injects; its animations are further down. Both are off
+   under prefers-reduced-motion. Tune speed in the animation durations; intensity in the alphas. */
 .hero { position: relative; overflow: hidden; isolation: isolate; background: linear-gradient(160deg, var(--dark) 0%, var(--dark-soft) 70%, #274238 100%); color: #fff; text-align: center; padding: 5.5rem 1.25rem 5rem; }
 .hero::before, .hero::after { content: ""; position: absolute; inset: -25%; z-index: -1; pointer-events: none; will-change: transform; }
 .hero::before {
@@ -54,16 +54,35 @@ a { color: var(--teal-deep); }
   animation: hero-drift-a 22s ease-in-out infinite alternate;
 }
 .hero::after {
-  background:
-    linear-gradient(rgba(255, 255, 255, .045) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, .045) 1px, transparent 1px),
-    radial-gradient(34% 44% at 68% 18%, rgba(255, 255, 255, .07), transparent 60%);
-  background-size: 56px 56px, 56px 56px, 100% 100%;
+  background: radial-gradient(34% 44% at 68% 18%, rgba(255, 255, 255, .07), transparent 60%);
   animation: hero-drift-b 34s linear infinite alternate;
 }
 @keyframes hero-drift-a { from { transform: translate3d(-4%, -3%, 0) scale(1); } to { transform: translate3d(4%, 4%, 0) scale(1.1); } }
 @keyframes hero-drift-b { from { transform: translate3d(2%, 3%, 0) rotate(-2deg); } to { transform: translate3d(-3%, -2%, 0) rotate(2deg); } }
 @media (prefers-reduced-motion: reduce) { .hero::before, .hero::after { animation: none; } }
+
+/* Sails and wind: the brand mark in motion. Markup comes from assets/js/hero-wind.js (never injected
+   under prefers-reduced-motion). Three sails billow from the mast foot, the hull bobs, gusts stream
+   left to right along curved paths, and two wave lines roll underneath. */
+.hero-wind { position: absolute; inset: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; overflow: visible; }
+.hero-wind .sail { fill: #fff; opacity: .22; transform-box: view-box; animation: sail-billow 7s ease-in-out infinite alternate; }
+.hero-wind .s2 { opacity: .14; animation-duration: 8.5s; animation-delay: -2.5s; }
+.hero-wind .s3 { opacity: .09; animation-duration: 10s; animation-delay: -5s; }
+.hero-wind .hull { fill: var(--teal); opacity: .55; }
+.hero-wind .boat { transform-box: view-box; animation: boat-bob 6s ease-in-out infinite alternate; }
+.hero-wind .boat.small { opacity: .75; animation-duration: 7.5s; animation-delay: -3s; }
+.hero-wind .gust { fill: none; stroke: rgba(255, 255, 255, .26); stroke-width: 2; stroke-linecap: round; stroke-dasharray: 90 910; stroke-dashoffset: 1000; animation: gust 9s linear infinite; }
+.hero-wind .g1 { stroke: rgba(53, 177, 135, .38); animation-duration: 11s; animation-delay: -4s; }
+.hero-wind .g2 { animation-duration: 8s; animation-delay: -1.5s; }
+.hero-wind .g3 { stroke: rgba(53, 177, 135, .32); animation-duration: 12s; animation-delay: -7s; }
+.hero-wind .g4 { animation-duration: 10s; animation-delay: -3s; }
+.hero-wind .wave { fill: none; stroke: rgba(53, 177, 135, .3); stroke-width: 2; animation: wave-roll 14s linear infinite; }
+.hero-wind .w2 { stroke: rgba(255, 255, 255, .1); animation: wave-roll-back 22s linear infinite; }
+@keyframes sail-billow { from { transform: skewX(-4deg) rotate(-1.2deg); } to { transform: skewX(4deg) rotate(1.2deg); } }
+@keyframes boat-bob { from { transform: translateY(-5px) rotate(-.8deg); } to { transform: translateY(5px) rotate(.8deg); } }
+@keyframes gust { from { stroke-dashoffset: 1000; } to { stroke-dashoffset: 0; } }
+@keyframes wave-roll { from { transform: translateX(0); } to { transform: translateX(-200px); } }
+@keyframes wave-roll-back { from { transform: translate(-200px, 14px); } to { transform: translate(0, 14px); } }
 .hero .kicker { color: var(--teal); font-family: var(--head); font-weight: 700; letter-spacing: .3em; font-size: .9rem; text-transform: uppercase; margin-bottom: 1rem; }
 .hero h1 { color: #fff; margin-bottom: .3em; }
 .hero .sub { color: #b9c2bd; font-size: 1.25rem; max-width: 34em; margin: 0 auto 2.2rem; }
