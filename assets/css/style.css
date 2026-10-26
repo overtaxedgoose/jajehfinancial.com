@@ -1,5 +1,6 @@
 /* Jajeh Financial — design system
-   Palette from the sail mark: charcoal + mint teal. Crisp, corporate, calm. */
+   Palette from the sail mark: charcoal + mint teal. Crisp, corporate, calm.
+   Type: Lato throughout (bold for headings), per the brand guide; the logo itself is Flama Condensed. */
 :root {
   --ink: #232021;
   --ink-soft: #5c5654;
@@ -11,7 +12,7 @@
   --dark: #232021;
   --dark-soft: #373233;
   --sans: "Lato", -apple-system, "Segoe UI", sans-serif;
-  --head: "Libre Franklin", "Helvetica Neue", sans-serif;
+  --head: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 * { box-sizing: border-box; }
@@ -19,7 +20,7 @@ html { scroll-behavior: smooth; }
 body { margin: 0; font-family: var(--sans); font-size: 1.0625rem; line-height: 1.7; color: var(--ink); background: var(--bg); }
 img { max-width: 100%; height: auto; }
 
-h1, h2, h3 { font-family: var(--head); font-weight: 800; line-height: 1.15; margin: 0 0 .5em; letter-spacing: .01em; }
+h1, h2, h3 { font-family: var(--head); font-weight: 700; line-height: 1.15; margin: 0 0 .5em; letter-spacing: .01em; }
 h1 { font-size: clamp(2.1rem, 5.5vw, 3.4rem); text-transform: uppercase; }
 h2 { font-size: clamp(1.4rem, 3.2vw, 2rem); text-transform: uppercase; letter-spacing: .06em; }
 h3 { font-size: 1.15rem; }
@@ -42,7 +43,7 @@ a { color: var(--teal-deep); }
 
 /* Hero */
 .hero { background: linear-gradient(160deg, var(--dark) 0%, var(--dark-soft) 70%, #274238 100%); color: #fff; text-align: center; padding: 5.5rem 1.25rem 5rem; }
-.hero .kicker { color: var(--teal); font-family: var(--head); font-weight: 800; letter-spacing: .3em; font-size: .9rem; text-transform: uppercase; margin-bottom: 1rem; }
+.hero .kicker { color: var(--teal); font-family: var(--head); font-weight: 700; letter-spacing: .3em; font-size: .9rem; text-transform: uppercase; margin-bottom: 1rem; }
 .hero h1 { color: #fff; margin-bottom: .3em; }
 .hero .sub { color: #b9c2bd; font-size: 1.25rem; max-width: 34em; margin: 0 auto 2.2rem; }
 .btn { display: inline-block; background: var(--teal); color: #fff; text-decoration: none; padding: .85rem 2.2rem; border-radius: 6px; font-family: var(--head); font-weight: 700; letter-spacing: .06em; text-transform: uppercase; font-size: .95rem; }
@@ -110,7 +111,7 @@ section.dark { background: var(--dark); color: #fff; }
 .nform.inline { grid-template-columns: 1fr auto; align-items: start; }
 @media (max-width: 480px) { .nform.inline { grid-template-columns: 1fr; } }
 /* Honeypot: off-screen, not display:none (some bots skip hidden fields), never focusable by people */
-.nform .hp { position: absolute; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden; opacity: 0; }
+.nform .hp, .survey .hp { position: absolute; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden; opacity: 0; }
 .form-ok { color: var(--teal-deep); font-weight: 700; margin-top: 1.2rem; }
 .form-ok[hidden] { display: none; }
 .nform[hidden] { display: none; }
@@ -145,7 +146,7 @@ section.dark { background: var(--dark); color: #fff; }
 
 /* Resource callout inside the intro (e.g. DealSheets on the real estate page) */
 .resource { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem 1.2rem; background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 1.1rem 1.4rem; margin-top: 1.8rem; }
-.resource strong { font-family: var(--head); font-weight: 800; text-transform: uppercase; letter-spacing: .08em; font-size: .82rem; color: var(--teal-deep); }
+.resource strong { font-family: var(--head); font-weight: 700; text-transform: uppercase; letter-spacing: .08em; font-size: .82rem; color: var(--teal-deep); }
 .resource span { flex: 1 1 22em; color: var(--ink-soft); }
 .resource a { font-family: var(--head); font-weight: 700; text-decoration: none; white-space: nowrap; }
 
@@ -162,7 +163,7 @@ section.dark { background: var(--dark); color: #fff; }
 /* Build / Capture / Secure pillars (also used on the homepage) */
 .pillars { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.4rem; }
 .pillar { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 1.8rem 1.6rem; }
-.pillar .num { display: block; font-family: var(--head); font-weight: 800; color: var(--teal); font-size: .8rem; letter-spacing: .22em; text-transform: uppercase; margin-bottom: .6rem; }
+.pillar .num { display: block; font-family: var(--head); font-weight: 700; color: var(--teal); font-size: .8rem; letter-spacing: .22em; text-transform: uppercase; margin-bottom: .6rem; }
 .pillar h3 { text-transform: uppercase; letter-spacing: .05em; }
 .pillar p { color: var(--ink-soft); margin: 0; }
 
@@ -196,7 +197,7 @@ section.dark { background: var(--dark); color: #fff; }
 .ind-slide .more:focus-visible { outline: none; }
 .ind-slide .more:focus-visible::after { outline: 2px solid var(--teal); outline-offset: 2px; }
 @media (max-width: 760px) { .ind-slide { grid-template-columns: 1fr; gap: 1.4rem; padding: 1.8rem 1.4rem; } }
-.ind-slide .kicker { color: var(--teal); font-family: var(--head); font-weight: 800; letter-spacing: .25em; font-size: .76rem; text-transform: uppercase; margin-bottom: .6rem; }
+.ind-slide .kicker { color: var(--teal); font-family: var(--head); font-weight: 700; letter-spacing: .25em; font-size: .76rem; text-transform: uppercase; margin-bottom: .6rem; }
 .ind-slide h3 { font-size: clamp(1.4rem, 3vw, 1.9rem); text-transform: uppercase; letter-spacing: .04em; }
 .ind-slide p { color: var(--ink-soft); }
 .ind-slide .more { font-family: var(--head); font-weight: 700; text-transform: uppercase; font-size: .85rem; letter-spacing: .08em; text-decoration: none; }
@@ -210,3 +211,32 @@ section.dark { background: var(--dark); color: #fff; }
 .ind-dots button[aria-current="true"] { background: var(--teal); }
 .ind-all { text-align: center; margin-top: 1.6rem; }
 .ind-all a { font-family: var(--head); font-weight: 700; text-transform: uppercase; font-size: .85rem; letter-spacing: .08em; text-decoration: none; }
+
+/* ---------- CFO fit survey (/cfo-fit) ---------- */
+.survey-section { padding-top: 3rem; }
+.survey .q { border: 0; padding: 0; margin: 0 0 2.4rem; min-width: 0; }
+.survey legend { font-family: var(--head); font-weight: 700; font-size: 1.15rem; line-height: 1.4; margin-bottom: .9rem; padding: 0; display: flex; gap: .7rem; align-items: baseline; }
+.survey legend .n { color: var(--teal-deep); font-size: .82rem; letter-spacing: .12em; flex: 0 0 auto; }
+.survey .hint { color: var(--ink-soft); font-size: .92rem; margin: -.4rem 0 .9rem; }
+.opts { display: flex; flex-wrap: wrap; gap: .6rem; }
+.opt { position: relative; cursor: pointer; }
+.opt input { position: absolute; opacity: 0; width: 1px; height: 1px; margin: 0; }
+.opt span { display: inline-block; background: var(--card); border: 1px solid var(--line); border-radius: 999px; padding: .6rem 1.1rem; font-family: var(--head); font-weight: 700; font-size: .95rem; line-height: 1.3; transition: border-color .15s ease, background .15s ease, color .15s ease; }
+.opt:hover span { border-color: var(--teal); }
+.opt input:checked + span { background: var(--teal); border-color: var(--teal); color: #fff; }
+.opt input:focus-visible + span { outline: 2px solid var(--teal-deep); outline-offset: 2px; }
+.survey .err { color: #b4332e; font-size: .9rem; font-weight: 700; margin: .7rem 0 0; }
+.survey .err[hidden] { display: none; }
+.survey .q.invalid legend { color: #b4332e; }
+.survey .fields { display: grid; gap: .8rem; grid-template-columns: 1fr 1fr; }
+@media (max-width: 560px) { .survey .fields { grid-template-columns: 1fr; } }
+.survey .fields input { width: 100%; background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: .85rem 1rem; font-family: var(--sans); font-size: 1rem; color: var(--ink); outline: none; }
+.survey .fields input:focus { border-color: var(--teal); }
+.survey .fine { color: var(--ink-soft); font-size: .9rem; margin: .9rem 0 0; }
+.survey .btn { border: 0; cursor: pointer; }
+.survey[hidden] { display: none; }
+.result { background: var(--card); border: 1px solid var(--line); border-top: 4px solid var(--teal); border-radius: 10px; padding: 2.2rem 2rem; }
+.result .kicker { color: var(--teal-deep); font-family: var(--head); font-weight: 700; letter-spacing: .25em; font-size: .8rem; text-transform: uppercase; margin-bottom: .6rem; }
+.result h2 { text-transform: none; letter-spacing: 0; font-size: clamp(1.5rem, 3vw, 2rem); }
+.result .actions { display: flex; gap: .8rem; flex-wrap: wrap; margin-top: 1.4rem; }
+.result[hidden] { display: none; }

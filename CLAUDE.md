@@ -19,14 +19,22 @@ Migrated from GoDaddy Websites+Marketing in August 2026.
   clickable as a whole (the Explore link is stretched over the tile via `.ind-slide .more::after`).
   The real estate page links to DealSheets (jajehgroup.com/dealsheets, Patrick's deal-modeling app)
   via the `.resource` callout in its intro.
+- `cfo-fit.html` (/cfo-fit) — the fractional CFO qualification survey the "See if you qualify" link on
+  the homepage CFO card points to. Eight multiple-choice questions (single or multi select) + name/email.
+  Scored in the browser (POINTS / TIERS at the top of its inline script; revenue under $500K always gets
+  the "foundation" result), result shown on the page, and a text summary is POSTed silently into the
+  CONTACT Google Form (name, email, summary in the message field) with the same spam guards. If Patrick
+  wants the answers in columns instead, create a dedicated Google Form and swap the entry ids there.
 - `links.html` (/links), `privacy-policy.html` (/privacy-policy)
 - `private/` and `.claude/launch.json` are gitignored: local-only working files (the methodology
   canvas source, the local preview config). Nothing in `private/` is ever published.
 - `downloads/` — Alta Vista EULA + Privacy Policy PDFs (rescued from GoDaddy CDN; linked from /privacy-policy)
-- `assets/css/style.css` — fonts: Libre Franklin (headings) + Lato (body); palette: charcoal + mint teal from the sail logo.
-  Brand guide: the logo itself is set in Flama Condensed (Bold or Light), complementary fonts are
-  Helvetica Neue LT Std or Lato. The header wordmark next to the sail mark is therefore Lato regular
-  (not bold, not the heading face); Flama is not a webfont we have, so never fake it with a bold sans.
+- `assets/css/style.css` — type is Lato throughout since Oct 2026 (headings Lato 700, body Lato 400;
+  `--head` and `--sans` both resolve to Lato with Helvetica Neue fallback); palette: charcoal + mint teal
+  from the sail logo. Brand guide: the logo itself is Flama Condensed (Bold or Light), complementary fonts
+  are Helvetica Neue LT Std or Lato. The header wordmark next to the sail mark is Lato regular, not bold;
+  Flama is not a webfont we have, so never fake it with a bold sans. Libre Franklin is gone; do not
+  reintroduce it.
 
 ## External integrations
 - Booking links are Google Calendar appointment schedules (calendar.app.google/...) — owned by Patrick's Google Workspace
