@@ -35,9 +35,9 @@ Migrated from GoDaddy Websites+Marketing in August 2026.
   canvas source, the local preview config). Nothing in `private/` is ever published.
 - `downloads/` — Alta Vista EULA + Privacy Policy PDFs (rescued from GoDaddy CDN; linked from /privacy-policy)
 - Hero motion: `.hero::before/::after` drift two teal radial pools (pure CSS), and `assets/js/hero-wind.js`
-  injects an SVG of the brand mark in motion (a fleet of four of the logo's boats with rounded sails
+  injects an SVG of the brand mark in motion (a fleet of eight of the logo's boats with rounded sails
   sailing across and off the right edge, nearer ones larger and faster, each bobbing and billowing, plus
-  wind gusts and waves) behind every `.hero`; all animation is CSS in style.css ("Sails and wind"), and the script does nothing
+  nine wind streams of varied length and speed, and waves) behind every `.hero`; all animation is CSS in style.css ("Sails and wind"), and the script does nothing
   under prefers-reduced-motion. Every page with a `.hero` loads the script with `defer`.
 - `assets/css/style.css` — type is Lato throughout since Oct 2026 (headings Lato 700, body Lato 400;
   `--head` and `--sans` both resolve to Lato with Helvetica Neue fallback); palette: charcoal + mint teal

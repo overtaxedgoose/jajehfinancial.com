@@ -68,19 +68,16 @@ a { color: var(--teal-deep); }
 .hero-wind { position: absolute; inset: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; overflow: visible; }
 .hero-wind .ship { animation: sail-through 120s linear infinite; }
 .hero-wind .bob { transform-box: fill-box; transform-origin: 55% 92%; animation: boat-bob 6s ease-in-out infinite alternate; }
-.hero-wind .sail { fill: #fff; opacity: .24; transform-box: fill-box; animation: sail-billow 7s ease-in-out infinite alternate; }
-.hero-wind .s2 { opacity: .15; animation-duration: 8.5s; animation-delay: -2.5s; }
-.hero-wind .s3 { opacity: .1; animation-duration: 10s; animation-delay: -5s; }
+.hero-wind .sail { fill: #fff; opacity: .24; transform-box: fill-box; animation: sail-billow 6s ease-in-out infinite alternate; }
+.hero-wind .s2 { opacity: .15; animation-duration: 7.2s; animation-delay: -2.5s; }
+.hero-wind .s3 { opacity: .1; animation-duration: 8.5s; animation-delay: -5s; }
 .hero-wind .hull { fill: var(--teal); opacity: .6; }
-.hero-wind .gust { fill: none; stroke: rgba(255, 255, 255, .26); stroke-width: 2; stroke-linecap: round; stroke-dasharray: 90 910; stroke-dashoffset: 1000; animation: gust 9s linear infinite; }
-.hero-wind .g1 { stroke: rgba(53, 177, 135, .38); animation-duration: 11s; animation-delay: -4s; }
-.hero-wind .g2 { animation-duration: 8s; animation-delay: -1.5s; }
-.hero-wind .g3 { stroke: rgba(53, 177, 135, .32); animation-duration: 12s; animation-delay: -7s; }
-.hero-wind .g4 { animation-duration: 10s; animation-delay: -3s; }
+.hero-wind .gust { fill: none; stroke: rgba(255, 255, 255, .3); stroke-width: 2; stroke-linecap: round; stroke-dasharray: 90 910; stroke-dashoffset: 1000; animation: gust 9s linear infinite; }
+/* each gust's length, width, color and timing are set inline by hero-wind.js from its wind table */
 .hero-wind .wave { fill: none; stroke: rgba(53, 177, 135, .3); stroke-width: 2; animation: wave-roll 14s linear infinite; }
 .hero-wind .w2 { stroke: rgba(255, 255, 255, .1); animation: wave-roll-back 22s linear infinite; }
 @keyframes sail-through { from { transform: translateX(-700px); } to { transform: translateX(2400px); } }
-@keyframes sail-billow { from { transform: skewX(-4deg) rotate(-1.2deg); } to { transform: skewX(4deg) rotate(1.2deg); } }
+@keyframes sail-billow { from { transform: skewX(-5deg) rotate(-1.5deg); } to { transform: skewX(5deg) rotate(1.5deg); } }
 @keyframes boat-bob { from { transform: translateY(-5px) rotate(-.8deg); } to { transform: translateY(5px) rotate(.8deg); } }
 @keyframes gust { from { stroke-dashoffset: 1000; } to { stroke-dashoffset: 0; } }
 @keyframes wave-roll { from { transform: translateX(0); } to { transform: translateX(-200px); } }
