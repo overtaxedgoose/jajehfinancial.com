@@ -33,7 +33,7 @@ a { color: var(--teal-deep); }
 .site-header .wrap { display: flex; align-items: center; justify-content: space-between; padding-top: .7rem; padding-bottom: .7rem; }
 .brand { display: flex; align-items: center; gap: .7rem; text-decoration: none; }
 .brand img { width: 42px; height: 42px; border-radius: 8px; }
-.brand span { font-family: var(--head); font-weight: 800; color: #fff; letter-spacing: .1em; font-size: 1.05rem; }
+.brand span { font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif; font-weight: 400; color: #fff; letter-spacing: .16em; font-size: 1.1rem; }
 .brand span em { font-style: normal; color: var(--teal); }
 .site-nav { display: flex; flex-wrap: wrap; gap: 1.1rem; }
 .site-nav a { text-decoration: none; color: #cfd4d0; font-size: .85rem; letter-spacing: .08em; text-transform: uppercase; }
@@ -55,6 +55,13 @@ a { color: var(--teal-deep); }
 section { padding: 4rem 0; }
 .section-head { text-align: center; margin-bottom: 2.5rem; }
 .section-head .rule { width: 64px; height: 4px; background: var(--teal); border: 0; margin: 1rem auto 0; }
+/* Dark band variant: alternates with the light sections */
+section.dark { background: var(--dark); color: #fff; }
+.dark h2, .dark h3 { color: #fff; }
+.dark .section-head p { color: #b9c2bd; }
+.dark .card { background: var(--dark-soft); border-color: #4a4443; border-top-color: var(--teal); }
+.dark .card p { color: #b9c2bd; }
+.dark .card .more { color: var(--teal); }
 .section-head p { color: var(--ink-soft); max-width: 40em; margin: 1.2rem auto 0; }
 
 /* Cards */
@@ -136,6 +143,12 @@ section { padding: 4rem 0; }
 .intro { padding-bottom: 2.5rem; }
 .lead { font-size: 1.25rem; line-height: 1.6; }
 
+/* Resource callout inside the intro (e.g. DealSheets on the real estate page) */
+.resource { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem 1.2rem; background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 1.1rem 1.4rem; margin-top: 1.8rem; }
+.resource strong { font-family: var(--head); font-weight: 800; text-transform: uppercase; letter-spacing: .08em; font-size: .82rem; color: var(--teal-deep); }
+.resource span { flex: 1 1 22em; color: var(--ink-soft); }
+.resource a { font-family: var(--head); font-weight: 700; text-decoration: none; white-space: nowrap; }
+
 /* Metrics band */
 .metrics { background: var(--dark); color: #fff; }
 .metrics h2 { color: #fff; }
@@ -152,7 +165,6 @@ section { padding: 4rem 0; }
 .pillar .num { display: block; font-family: var(--head); font-weight: 800; color: var(--teal); font-size: .8rem; letter-spacing: .22em; text-transform: uppercase; margin-bottom: .6rem; }
 .pillar h3 { text-transform: uppercase; letter-spacing: .05em; }
 .pillar p { color: var(--ink-soft); margin: 0; }
-.approach { padding-top: 3.25rem; padding-bottom: 0; }
 
 /* CTA band */
 .cta-band { background: linear-gradient(160deg, var(--teal-deep) 0%, var(--teal) 100%); color: #fff; text-align: center; }
@@ -176,7 +188,13 @@ section { padding: 4rem 0; }
 .ind-track { display: flex; gap: 1.4rem; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; scrollbar-width: none; -webkit-overflow-scrolling: touch; padding-bottom: 2px; }
 .ind-track::-webkit-scrollbar { display: none; }
 .ind-track:focus-visible { outline: 2px solid var(--teal); outline-offset: 4px; }
-.ind-slide { flex: 0 0 100%; scroll-snap-align: start; background: var(--card); border: 1px solid var(--line); border-top: 4px solid var(--teal); border-radius: 10px; padding: 2.2rem 2rem; display: grid; grid-template-columns: 1.25fr 1fr; gap: 2.4rem; align-items: center; }
+.ind-slide { position: relative; flex: 0 0 100%; scroll-snap-align: start; background: var(--card); border: 1px solid var(--line); border-top: 4px solid var(--teal); border-radius: 10px; padding: 2.2rem 2rem; display: grid; grid-template-columns: 1.25fr 1fr; gap: 2.4rem; align-items: center; transition: border-color .2s ease, box-shadow .2s ease; }
+.ind-slide:hover { border-color: var(--teal); box-shadow: 0 10px 28px rgba(35, 32, 33, .08); }
+.ind-slide:hover h3 { color: var(--teal-deep); }
+/* The Explore link stretches over the whole tile, so anywhere on it is clickable */
+.ind-slide .more::after { content: ""; position: absolute; inset: 0; border-radius: 10px; }
+.ind-slide .more:focus-visible { outline: none; }
+.ind-slide .more:focus-visible::after { outline: 2px solid var(--teal); outline-offset: 2px; }
 @media (max-width: 760px) { .ind-slide { grid-template-columns: 1fr; gap: 1.4rem; padding: 1.8rem 1.4rem; } }
 .ind-slide .kicker { color: var(--teal); font-family: var(--head); font-weight: 800; letter-spacing: .25em; font-size: .76rem; text-transform: uppercase; margin-bottom: .6rem; }
 .ind-slide h3 { font-size: clamp(1.4rem, 3vw, 1.9rem); text-transform: uppercase; letter-spacing: .04em; }

@@ -5,20 +5,28 @@ Migrated from GoDaddy Websites+Marketing in August 2026.
 
 ## Structure
 - Plain HTML/CSS, no build step. Pushing to `main` deploys via GitHub Pages.
-- `index.html` — one-page site: hero, approach (Build / Capture / Secure), services, appointments,
-  industries carousel, about, contact
+- `index.html` — one-page site, light/dark sections alternating: hero (dark), approach
+  (Build / Capture / Secure), services (`section.dark`), industries carousel, appointments (dark),
+  about, contact. Keep that alternation when adding or moving sections.
 - `industries/index.html` (/industries/) hub + `industries/<slug>.html` (/industries/<slug>) landing pages:
-  creative-agencies, nonprofits, injury-attorneys, real-estate. Each follows the same template:
+  creative-agencies, nonprofits, injury-attorneys, real-estate, residential-construction. Each follows
+  the same template:
   hero > intro > "What the Books Have to Handle" (6 cards) > "The Numbers That Drive Profitability"
   (6 metrics with rule-of-thumb targets) > "From Profit to Wealth" (Build / Capture / Secure pillars)
   > CTA band > "Other industries" strip. Adding an industry = new page here, a slide in the homepage
   carousel (`<article class="ind-slide">` inside `#ind-track`; dots are generated), a card on the hub,
-  a link in every other page's "Other industries" strip, and a line in sitemap.xml.
+  a link in every other page's "Other industries" strip, and a line in sitemap.xml. Carousel tiles are
+  clickable as a whole (the Explore link is stretched over the tile via `.ind-slide .more::after`).
+  The real estate page links to DealSheets (jajehgroup.com/dealsheets, Patrick's deal-modeling app)
+  via the `.resource` callout in its intro.
 - `links.html` (/links), `privacy-policy.html` (/privacy-policy)
 - `private/` and `.claude/launch.json` are gitignored: local-only working files (the methodology
   canvas source, the local preview config). Nothing in `private/` is ever published.
 - `downloads/` — Alta Vista EULA + Privacy Policy PDFs (rescued from GoDaddy CDN; linked from /privacy-policy)
-- `assets/css/style.css` — fonts: Libre Franklin (headings) + Lato (body); palette: charcoal + mint teal from the sail logo
+- `assets/css/style.css` — fonts: Libre Franklin (headings) + Lato (body); palette: charcoal + mint teal from the sail logo.
+  Brand guide: the logo itself is set in Flama Condensed (Bold or Light), complementary fonts are
+  Helvetica Neue LT Std or Lato. The header wordmark next to the sail mark is therefore Lato regular
+  (not bold, not the heading face); Flama is not a webfont we have, so never fake it with a bold sans.
 
 ## External integrations
 - Booking links are Google Calendar appointment schedules (calendar.app.google/...) — owned by Patrick's Google Workspace
@@ -45,7 +53,8 @@ Migrated from GoDaddy Websites+Marketing in August 2026.
 
 ## Positioning (since Oct 2026)
 Jajeh Financial is positioned first as a fractional CFO service for owners who are scaling a business
-and building, capturing and securing wealth from it. Bookkeeping/payroll is "the foundation", tax is
+and building, capturing and securing wealth from it. The niche is the growth STAGE, not an industry
+(most accounting firms pick a sector; ours is growth) — say so in hero/industries copy. Bookkeeping/payroll is "the foundation", tax is
 "planning all year, filing through Unison CPA". The method is three phases, "Build. Capture. Secure."
 (homepage #approach band, and the "From Profit to Wealth" section on every industry page). The full
 methodology graphic (phases > levels > operating rhythm) is a private Claude Design artifact that
