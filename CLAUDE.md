@@ -20,7 +20,8 @@ Migrated from GoDaddy Websites+Marketing in August 2026.
   The real estate page links to DealSheets (jajehgroup.com/dealsheets, Patrick's deal-modeling app)
   via the `.resource` callout in its intro.
 - `cfo-fit.html` (/cfo-fit) — the fractional CFO qualification survey the "See if you qualify" link on
-  the homepage CFO card points to. Eight multiple-choice questions (single or multi select) + name/email.
+  the homepage CFO card points to. Nine multiple-choice questions (single or multi select) + name/email;
+  headline "How Scalable Is Your Business?" (chosen so the answer is never a quick "no").
   Scored in the browser (POINTS / TIERS at the top of its inline script; revenue under $500K always gets
   the "foundation" result), result shown on the page, and a text summary is POSTed silently into the
   CONTACT Google Form (name, email, summary in the message field) with the same spam guards. If Patrick
@@ -29,6 +30,8 @@ Migrated from GoDaddy Websites+Marketing in August 2026.
 - `private/` and `.claude/launch.json` are gitignored: local-only working files (the methodology
   canvas source, the local preview config). Nothing in `private/` is ever published.
 - `downloads/` — Alta Vista EULA + Privacy Policy PDFs (rescued from GoDaddy CDN; linked from /privacy-policy)
+- Hero motion: `.hero::before/::after` drift two teal radial pools and a faint grid behind every hero
+  (pure CSS keyframes, off under prefers-reduced-motion). Speed = the two animation durations.
 - `assets/css/style.css` — type is Lato throughout since Oct 2026 (headings Lato 700, body Lato 400;
   `--head` and `--sans` both resolve to Lato with Helvetica Neue fallback); palette: charcoal + mint teal
   from the sail logo. Brand guide: the logo itself is Flama Condensed (Bold or Light), complementary fonts
