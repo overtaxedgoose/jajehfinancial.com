@@ -22,6 +22,15 @@ Migrated from GoDaddy Websites+Marketing in August 2026.
     fields: emailAddress (localStorage jf-newsletter-done prevents dupes)
   Both owned by patrick@jajehgroup.com, email notifications on. If form questions ever change,
   re-extract entry IDs from the viewform data-params attributes.
+- Spam guards (added Oct 2026 after regular bot fills) live in the inline script in index.html and are
+  deliberately silent: a blocked submission still shows the thank-you so bots learn nothing.
+  1. honeypot `company_url` field in both forms (off-screen via `.nform .hp`, never display:none)
+  2. timing: nothing sent within 4s of page load; contact form also needs 3s since first focus/input
+  3. link stuffing: contact messages with more than one URL are dropped
+  If spam keeps arriving after this, it is being POSTed straight to the Google Form, bypassing the site.
+  The fix then is a NEW Google Form (new /d/e/ id, new entry ids) and, ideally, a tiny serverless
+  proxy (Cloudflare Worker / Vercel function) that verifies a Cloudflare Turnstile token server-side
+  and forwards to Google, so the form id never appears in page source.
 - Reports → https://www.myaltavista.com/ ; Tax → unisoncpa.com ; Sharefile → jajeh.sharefile.com
 
 ## Rules

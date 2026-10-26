@@ -137,6 +137,7 @@
             <input type="text" name="name" placeholder="Name" required aria-label="Name">
             <input type="email" name="email" placeholder="Email" required aria-label="Email">
             <textarea name="message" placeholder="How can we help?" required aria-label="How can we help?"></textarea>
+            <div class="hp" aria-hidden="true"><label>Leave this field empty <input type="text" name="company_url" tabindex="-1" autocomplete="off"></label></div>
             <button class="btn" type="submit">Send</button>
           </form>
           <p class="form-ok" id="contact-ok" hidden>Thank you &mdash; we&rsquo;ll get back to you promptly.</p>
@@ -146,6 +147,7 @@
           <p>Sign up to hear from us.</p>
           <form class="nform inline" id="news-form" novalidate="">
             <input type="email" name="email" placeholder="Email address" required aria-label="Email address">
+            <div class="hp" aria-hidden="true"><label>Leave this field empty <input type="text" name="company_url" tabindex="-1" autocomplete="off"></label></div>
             <button class="btn ghost" type="submit">Sign Up</button>
           </form>
           <p class="form-ok" id="news-ok" hidden>You&rsquo;re on the list.</p>
@@ -156,15 +158,39 @@
 
   <script>
     // Both forms post silently to private Google Forms (see CLAUDE.md).
-    function wire(formId, okId, action, build, storeKey) {
+    // Spam guards — all client-side and all silent: a blocked submission still sees the thank-you,
+    // so bots get no signal that they were filtered.
+    //   1. Honeypot: the off-screen "company_url" field is invisible to people; bots fill every field.
+    //   2. Timing: a person needs a few seconds after the page loads (and, for the contact form,
+    //      after first touching it) before sending; an untouched form was filled by script.
+    //   3. Link stuffing: real prospects rarely paste more than one URL into a message.
+    const loadedAt = Date.now(), touched = {};
+    document.querySelectorAll('.nform').forEach((f) => {
+      const mark = () => { touched[f.id] = touched[f.id] || Date.now(); };
+      f.addEventListener('focusin', mark);
+      f.addEventListener('input', mark);
+    });
+    function isSpam(form, message, minTouchMs) {
+      const hp = form.querySelector('[name="company_url"]');
+      if (hp && hp.value) return true;
+      const t = touched[form.id], now = Date.now();
+      if (!t || now - loadedAt < 4000 || now - t < minTouchMs) return true;
+      const links = (message || '').match(/https?:\/\/|www\./gi) || [];
+      return links.length > 1;
+    }
+    function remember(key, write) {
+      try { return write ? localStorage.setItem(key, '1') : localStorage.getItem(key); } catch (e) { return null; }
+    }
+    function wire(formId, okId, action, build, storeKey, messageField, minTouchMs) {
       const form = document.getElementById(formId), ok = document.getElementById(okId);
-      if (storeKey && localStorage.getItem(storeKey)) { form.hidden = true; ok.hidden = false; return; }
+      if (storeKey && remember(storeKey)) { form.hidden = true; ok.hidden = false; return; }
       form.addEventListener('submit', (e) => {
         e.preventDefault();
         if (!form.reportValidity()) return;
-        const body = build(form);
-        fetch(action, { method: 'POST', mode: 'no-cors', body }).catch(() => {});
-        if (storeKey) localStorage.setItem(storeKey, '1');
+        if (!isSpam(form, messageField ? form[messageField].value : '', minTouchMs)) {
+          fetch(action, { method: 'POST', mode: 'no-cors', body: build(form) }).catch(() => {});
+        }
+        if (storeKey) remember(storeKey, true);
         form.hidden = true; ok.hidden = false;
       });
     }
@@ -174,12 +200,12 @@
         b.append('emailAddress', f.email.value.trim());
         b.append('entry.1375934470', f.name.value.trim());
         b.append('entry.126211689', f.message.value.trim());
-        return b; }, null);
+        return b; }, null, 'message', 3000);
     wire('news-form', 'news-ok',
       'https://docs.google.com/forms/d/e/1FAIpQLSdoxXHpUQNjtJnkFAvnxzg--265_VbVq8pgbEas1SnQ87HH2A/formResponse',
       (f) => { const b = new FormData();
         b.append('emailAddress', f.email.value.trim());
-        return b; }, 'jf-newsletter-done');
+        return b; }, 'jf-newsletter-done', null, 0);
   </script>
 
   <footer class="site-footer">

@@ -100,6 +100,8 @@ section { padding: 4rem 0; }
 .nform .btn { border: 0; cursor: pointer; justify-self: start; }
 .nform.inline { grid-template-columns: 1fr auto; align-items: start; }
 @media (max-width: 480px) { .nform.inline { grid-template-columns: 1fr; } }
+/* Honeypot: off-screen, not display:none (some bots skip hidden fields), never focusable by people */
+.nform .hp { position: absolute; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden; opacity: 0; }
 .form-ok { color: var(--teal-deep); font-weight: 700; margin-top: 1.2rem; }
 .form-ok[hidden] { display: none; }
 .nform[hidden] { display: none; }
