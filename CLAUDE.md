@@ -36,8 +36,9 @@ Migrated from GoDaddy Websites+Marketing in August 2026.
 - `downloads/` — Alta Vista EULA + Privacy Policy PDFs (rescued from GoDaddy CDN; linked from /privacy-policy)
 - Hero motion: `.hero::before/::after` drift two teal radial pools (pure CSS), and `assets/js/hero-wind.js`
   injects an SVG of the brand mark in motion (a fleet of four of the logo's boats with rounded sails
-  sailing across and off the right edge, nearer ones larger and faster, each bobbing and billowing, plus
-  nine wind streams that fade in, stream across and rest, and waves) behind every `.hero`; the whole
+  sailing across and off the right edge, nearer ones larger and faster, each bobbing and billowing to
+  its own tempo and phase, plus nine wind streams that fade in, stream and fade out, some across the
+  whole hero and some only partway, then rest, and waves) behind every `.hero`; the whole
   SVG layer breathes (`hero-breathe`, 32s). All animation is CSS in style.css ("Sails and wind"), and the
   script does nothing under prefers-reduced-motion. Every page with a `.hero` loads the script with `defer`.
 - Sea bands: `section.dark`, `.metrics` and `.site-footer` carry the hero's water in pure CSS (style.css

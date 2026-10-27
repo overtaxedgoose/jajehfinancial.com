@@ -69,8 +69,9 @@ a { color: var(--teal-deep); }
 .hero-wind .ship { animation: sail-through 120s linear infinite; }
 .hero-wind .bob { transform-box: fill-box; transform-origin: 55% 92%; animation: boat-bob 6s ease-in-out infinite alternate; }
 .hero-wind .sail { fill: #fff; opacity: .24; transform-box: fill-box; animation: sail-billow 6s ease-in-out infinite alternate; }
-.hero-wind .s2 { opacity: .15; animation-duration: 7.2s; animation-delay: -2.5s; }
-.hero-wind .s3 { opacity: .1; animation-duration: 8.5s; animation-delay: -5s; }
+.hero-wind .s2 { opacity: .15; }
+.hero-wind .s3 { opacity: .1; }
+/* each sail's billow duration and delay are set inline by hero-wind.js (base timing x the ship's tempo, offset by its phase) */
 .hero-wind .hull { fill: var(--teal); opacity: .6; }
 .hero-wind .gust { fill: none; stroke: rgba(255, 255, 255, .3); stroke-width: 2; stroke-linecap: round; stroke-dasharray: 90 910; stroke-dashoffset: 1000; animation: gust 9s linear infinite; }
 /* each gust's length, width, color and timing are set inline by hero-wind.js from its wind table */
@@ -79,13 +80,14 @@ a { color: var(--teal-deep); }
 @keyframes sail-through { from { transform: translateX(-700px); } to { transform: translateX(2400px); } }
 @keyframes sail-billow { from { transform: skewX(-5deg) rotate(-1.5deg); } to { transform: skewX(5deg) rotate(1.5deg); } }
 @keyframes boat-bob { from { transform: translateY(-5px) rotate(-.8deg); } to { transform: translateY(5px) rotate(.8deg); } }
-/* A gust fades in, streams the full path by 70% of its cycle, fades out, and rests for the remainder. */
+/* A gust fades in, streams from --from to --to (dash offsets the script sets per gust; the defaults are
+   the full left-to-right crossing) by 70% of its cycle, fades out, and rests for the remainder. */
 @keyframes gust {
-  0% { stroke-dashoffset: 1000; opacity: 0; }
+  0% { stroke-dashoffset: var(--from, 1000); opacity: 0; }
   12% { opacity: 1; }
   56% { opacity: 1; }
-  70% { stroke-dashoffset: 0; opacity: 0; }
-  100% { stroke-dashoffset: 0; opacity: 0; }
+  70% { stroke-dashoffset: var(--to, 0); opacity: 0; }
+  100% { stroke-dashoffset: var(--to, 0); opacity: 0; }
 }
 /* The whole sails-and-wind layer rises and settles, like weather moving through. */
 @keyframes hero-breathe { 0%, 100% { opacity: .35; } 50% { opacity: 1; } }
