@@ -1,6 +1,7 @@
 // Hero decoration: the Jajeh mark as motion. A small fleet of the logo's sailboats (three layered sails
 // and a hull, rounded corners like the mark) sails across the hero and off the edge, nearer ships larger
-// and faster, each billowing and bobbing, with wind gusts streaming across and two wave lines underneath.
+// and faster, each billowing and bobbing, with wind gusts that come and go and two wave lines underneath.
+// The whole layer breathes (fades in and out slowly, in CSS) so the scene rises and settles like weather.
 // This file only builds the SVG markup; all movement is CSS (see "Sails and wind" in style.css).
 // Skipped entirely when the visitor prefers reduced motion. Retune: the fleet table below, speeds in CSS.
 (function () {
@@ -46,27 +47,25 @@
 
   // Far to near (paint order). scale = size, cross = seconds to sail across, delay = where it starts.
   var fleet = [
-    { scale: 0.3,  water: 544, opacity: 0.4,  cross: 210, delay: -160, bob: 8.5 },
-    { scale: 0.38, water: 546, opacity: 0.45, cross: 180, delay: -40,  bob: 8 },
-    { scale: 0.45, water: 549, opacity: 0.5,  cross: 160, delay: -110, bob: 7.5 },
-    { scale: 0.55, water: 552, opacity: 0.6,  cross: 140, delay: -75,  bob: 7 },
-    { scale: 0.62, water: 554, opacity: 0.7,  cross: 125, delay: -15,  bob: 6.8 },
-    { scale: 0.7,  water: 556, opacity: 0.8,  cross: 115, delay: -100, bob: 6.5 },
-    { scale: 0.8,  water: 558, opacity: 0.9,  cross: 105, delay: -60,  bob: 6.2 },
-    { scale: 0.9,  water: 560, opacity: 0.95, cross: 95,  delay: -30,  bob: 6 }
+    { scale: 0.34, water: 546, opacity: 0.45, cross: 190, delay: -150, bob: 8.5 },
+    { scale: 0.5,  water: 551, opacity: 0.6,  cross: 150, delay: -40,  bob: 7.4 },
+    { scale: 0.68, water: 556, opacity: 0.8,  cross: 120, delay: -95,  bob: 6.6 },
+    { scale: 0.9,  water: 560, opacity: 0.95, cross: 100, delay: -20,  bob: 6 }
   ].map(ship).join('');
 
   // Wind: y = height, bend = how much the stream arcs, dash = streak length (of 1000), dur/delay = timing.
+  // Each gust fades in, streams across for the first ~70% of its cycle, fades out, then rests (see the
+  // gust keyframes in CSS), so the staggered durations make the wind come and go rather than stream.
   var gusts = [
-    { y: 80,  bend: -40, dash: 120, dur: 9,   delay: -2,   teal: false, w: 2 },
-    { y: 130, bend: 30,  dash: 60,  dur: 6.5, delay: -4,   teal: true,  w: 1.5 },
-    { y: 190, bend: -50, dash: 140, dur: 11,  delay: -7,   teal: true,  w: 2 },
-    { y: 240, bend: 20,  dash: 50,  dur: 6,   delay: -1,   teal: false, w: 1.5 },
-    { y: 300, bend: -35, dash: 110, dur: 10,  delay: -5.5, teal: false, w: 2.2 },
-    { y: 350, bend: 45,  dash: 70,  dur: 7.5, delay: -3,   teal: true,  w: 1.5 },
-    { y: 410, bend: -30, dash: 130, dur: 12,  delay: -9,   teal: false, w: 2 },
-    { y: 455, bend: 25,  dash: 55,  dur: 6.8, delay: -2.5, teal: true,  w: 1.5 },
-    { y: 505, bend: -45, dash: 100, dur: 9.5, delay: -6,   teal: false, w: 2 }
+    { y: 80,  bend: -40, dash: 120, dur: 13,   delay: -3,   teal: false, w: 2 },
+    { y: 130, bend: 30,  dash: 60,  dur: 9.5,  delay: -6,   teal: true,  w: 1.5 },
+    { y: 190, bend: -50, dash: 140, dur: 16,   delay: -10,  teal: true,  w: 2 },
+    { y: 240, bend: 20,  dash: 50,  dur: 8.5,  delay: -1,   teal: false, w: 1.5 },
+    { y: 300, bend: -35, dash: 110, dur: 14.5, delay: -8,   teal: false, w: 2.2 },
+    { y: 350, bend: 45,  dash: 70,  dur: 11,   delay: -4.5, teal: true,  w: 1.5 },
+    { y: 410, bend: -30, dash: 130, dur: 17.5, delay: -13,  teal: false, w: 2 },
+    { y: 455, bend: 25,  dash: 55,  dur: 10,   delay: -2,   teal: true,  w: 1.5 },
+    { y: 505, bend: -45, dash: 100, dur: 13.5, delay: -7,   teal: false, w: 2 }
   ].map(function (g, i) {
     var d = 'M-100 ' + g.y + ' C 350 ' + (g.y + g.bend) + ', 850 ' + (g.y - g.bend) + ', 1700 ' + (g.y + g.bend / 2);
     var style = 'stroke-dasharray:' + g.dash + ' ' + (1000 - g.dash) + ';stroke-width:' + g.w +

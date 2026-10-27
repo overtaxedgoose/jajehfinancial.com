@@ -65,7 +65,7 @@ a { color: var(--teal-deep); }
    under prefers-reduced-motion). A fleet of the logo's boats sails across the hero and off the right
    edge (.ship, nearer = larger and faster), each one bobbing (.bob) with three sails billowing from the
    mast foot (.sail), while gusts stream left to right and two wave lines roll underneath. */
-.hero-wind { position: absolute; inset: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; overflow: visible; }
+.hero-wind { position: absolute; inset: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; overflow: visible; animation: hero-breathe 32s ease-in-out -12s infinite; }
 .hero-wind .ship { animation: sail-through 120s linear infinite; }
 .hero-wind .bob { transform-box: fill-box; transform-origin: 55% 92%; animation: boat-bob 6s ease-in-out infinite alternate; }
 .hero-wind .sail { fill: #fff; opacity: .24; transform-box: fill-box; animation: sail-billow 6s ease-in-out infinite alternate; }
@@ -79,7 +79,16 @@ a { color: var(--teal-deep); }
 @keyframes sail-through { from { transform: translateX(-700px); } to { transform: translateX(2400px); } }
 @keyframes sail-billow { from { transform: skewX(-5deg) rotate(-1.5deg); } to { transform: skewX(5deg) rotate(1.5deg); } }
 @keyframes boat-bob { from { transform: translateY(-5px) rotate(-.8deg); } to { transform: translateY(5px) rotate(.8deg); } }
-@keyframes gust { from { stroke-dashoffset: 1000; } to { stroke-dashoffset: 0; } }
+/* A gust fades in, streams the full path by 70% of its cycle, fades out, and rests for the remainder. */
+@keyframes gust {
+  0% { stroke-dashoffset: 1000; opacity: 0; }
+  12% { opacity: 1; }
+  56% { opacity: 1; }
+  70% { stroke-dashoffset: 0; opacity: 0; }
+  100% { stroke-dashoffset: 0; opacity: 0; }
+}
+/* The whole sails-and-wind layer rises and settles, like weather moving through. */
+@keyframes hero-breathe { 0%, 100% { opacity: .35; } 50% { opacity: 1; } }
 @keyframes wave-roll { from { transform: translateX(0); } to { transform: translateX(-200px); } }
 @keyframes wave-roll-back { from { transform: translate(-200px, 14px); } to { transform: translate(0, 14px); } }
 .hero .kicker { color: var(--teal); font-family: var(--head); font-weight: 700; letter-spacing: .3em; font-size: .9rem; text-transform: uppercase; margin-bottom: 1rem; }
@@ -97,6 +106,28 @@ section { padding: 4rem 0; }
 .section-head .rule { width: 64px; height: 4px; background: var(--teal); border: 0; margin: 1rem auto 0; }
 /* Dark band variant: alternates with the light sections */
 section.dark { background: var(--dark); color: #fff; }
+/* Sea bands: every dark band is the same water the hero fleet sails on. A faint teal light pool
+   drifts behind it (reusing hero-drift-a) and a waterline, the hero's two wave lines, rolls along
+   its bottom edge. Pure CSS; the waves are inline SVG tiles 200px wide so the roll loops seamlessly.
+   Intensity: the alphas below and in the tiles' stroke-opacity. */
+section.dark, .metrics, .site-footer { position: relative; overflow: hidden; isolation: isolate; }
+section.dark::before, .metrics::before, .site-footer::before {
+  content: ""; position: absolute; inset: -30%; z-index: -1; pointer-events: none; will-change: transform;
+  background:
+    radial-gradient(40% 50% at 82% 28%, rgba(53, 177, 135, .17), transparent 62%),
+    radial-gradient(36% 46% at 16% 82%, rgba(29, 135, 99, .15), transparent 62%);
+  animation: hero-drift-a 30s ease-in-out infinite alternate;
+}
+section.dark::after, .metrics::after, .site-footer::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 24px; z-index: -1; pointer-events: none;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='20' viewBox='0 0 200 20'%3E%3Cpath d='M0 10 Q50 0 100 10 T200 10' fill='none' stroke='%2335b187' stroke-opacity='.34' stroke-width='2'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='20' viewBox='0 0 200 20'%3E%3Cpath d='M0 10 Q50 0 100 10 T200 10' fill='none' stroke='%23ffffff' stroke-opacity='.12' stroke-width='2'/%3E%3C/svg%3E");
+  background-repeat: repeat-x; background-size: 200px 20px; background-position: 0 0, 0 6px;
+  animation: waterline 18s linear infinite;
+}
+@keyframes waterline { from { background-position: 0 0, 0 6px; } to { background-position: -200px 0, 200px 6px; } }
+@media (prefers-reduced-motion: reduce) { section.dark::before, section.dark::after, .metrics::before, .metrics::after, .site-footer::before, .site-footer::after { animation: none; } }
 .dark h2, .dark h3 { color: #fff; }
 .dark .section-head p { color: #b9c2bd; }
 .dark .card { background: var(--dark-soft); border-color: #4a4443; border-top-color: var(--teal); }
