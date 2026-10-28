@@ -41,6 +41,9 @@ Migrated from GoDaddy Websites+Marketing in August 2026.
   whole hero and some only partway, then rest, and waves) behind every `.hero`; the whole
   SVG layer breathes (`hero-breathe`, 32s). All animation is CSS in style.css ("Sails and wind"), and the
   script does nothing under prefers-reduced-motion. Every page with a `.hero` loads the script with `defer`.
+- The hero's bottom edge is curved (`clip-path: ellipse(140% 100% at 50% 0%)` on `.hero`: the lower
+  corners lift, the middle stays full depth) and the section after it gets extra top padding
+  (`.hero + section`). Keep the hero generous: 7.5rem top / 8.5rem bottom on desktop.
 - Sea bands: `section.dark`, `.metrics` and `.site-footer` carry the hero's water in pure CSS (style.css
   "Sea bands"): a faint drifting teal pool (`::before`) and a rolling waterline of two wave tiles along
   the bottom edge (`::after`). Their `::before/::after` are taken; both animations stop under
