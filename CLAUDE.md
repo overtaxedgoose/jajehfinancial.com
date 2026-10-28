@@ -91,4 +91,6 @@ Patrick walks prospects through; it is deliberately NOT on the site.
 - NEVER publish an email address anywhere on this site (including the privacy policy) —
   Patrick's addresses must stay protected. All contact goes through the native forms.
 - URL paths /links and /privacy-policy must keep working (Pages serves links.html at /links).
+- Every outbound link (other domains, and the PDF downloads) opens in a new tab: target="_blank"
+  rel="noopener". The page generator writes those on its own anchors; keep them on any new link.
 - DNS at GoDaddy; email on Google Workspace — never change NS/MX/TXT records.
