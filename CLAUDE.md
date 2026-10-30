@@ -22,7 +22,8 @@ Migrated from GoDaddy Websites+Marketing in August 2026.
   a link in every other page's "Other industries" strip, and a line in sitemap.xml. Carousel tiles are
   clickable as a whole (the Explore link is stretched over the tile via `.ind-slide .more::after`).
   The real estate page links to DealSheets (jajehgroup.com/dealsheets, Patrick's deal-modeling app)
-  via the `.resource` callout in its intro.
+  and Peach Property Tax (peachpropertytax.com, GA and TX commercial property tax appeals) via the
+  `.resource` callouts in its intro (the generator's `resource` field takes one tuple or a list).
 - `cfo-fit.html` (/cfo-fit) — the fractional CFO qualification survey the "See if you qualify" link on
   the homepage CFO card points to. Nine multiple-choice questions (single or multi select) + name/email;
   headline "How Scalable Is Your Business?" (chosen so the answer is never a quick "no").

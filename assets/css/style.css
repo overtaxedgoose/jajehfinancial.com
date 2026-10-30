@@ -228,6 +228,7 @@ section.dark::after, .metrics::after, .site-footer::after {
 .resource strong { font-family: var(--head); font-weight: 700; text-transform: uppercase; letter-spacing: .08em; font-size: .82rem; color: var(--teal-deep); }
 .resource span { flex: 1 1 22em; color: var(--ink-soft); }
 .resource a { font-family: var(--head); font-weight: 700; text-decoration: none; white-space: nowrap; }
+.resource + .resource { margin-top: .8rem; }
 
 /* Metrics band */
 .metrics { background: var(--dark); color: #fff; }
