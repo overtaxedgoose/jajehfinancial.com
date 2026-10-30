@@ -9,7 +9,8 @@ Migrated from GoDaddy Websites+Marketing in August 2026.
   (Build / Capture / Secure), services (`section.dark`), industries carousel, appointments (dark),
   about, contact. Keep that alternation when adding or moving sections.
 - `industries/index.html` (/industries/) hub + `industries/<slug>.html` (/industries/<slug>) landing pages:
-  creative-agencies, nonprofits, injury-attorneys, real-estate, residential-construction, multi-entity
+  creative-agencies, nonprofits, injury-attorneys, real-estate, residential-construction, food-service
+  (grocery stores, cafes, coffee shops, full-service restaurants, catering), multi-entity
   (holding companies, PE platforms, roll-ups), highly-regulated (state-licensed cultivation, processing
   and retail: 280E, seed-to-sale, cash controls; deliberately never says "cannabis" or "weed" on the page
   so other prospects are not put off; the meta description alone says "state-legal cannabis" for search).
